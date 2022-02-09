@@ -18,21 +18,21 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 - task: DownloadSecureFile@1
-  name: publickey
+  name: publickey 
   inputs:
     secureFile: 'azure_rsa.pub'
 - task: TerraformCLI@0
   inputs:
     command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/azure-terraform/kubernetes'
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
     backendType: 'azurerm'
-    backendServiceArm: 'azure-resource-aforo255'
+    backendServiceArm: 'Azure-resource-aforo255'
     ensureBackend: true
     backendAzureRmResourceGroupName: 'terraform-backend-rg'
     backendAzureRmResourceGroupLocation: 'westeurope'
     backendAzureRmStorageAccountName: 'storageacctaforo255'
     backendAzureRmContainerName: 'storageacctaforo255container'
-    backendAzureRmKey: 'kubernetes-dev.tfstate'
+    backendAzureRmKey: 'Kubernetes-dev.tfstate'
     allowTelemetryCollection: true
 
